@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Crédito Forte ESC - Empresa Simples de Crédito. Empréstimos, financiamentos e desconto de títulos para MEI, micro e pequenas empresas em Feira de Santana - BA." />
+    <meta property="og:title" content="Crédito Forte | Soluções Financeiras" />
+    <meta property="og:url" content="https://creditoforte.com.br" />
+    <meta name="theme-color" content="#001e40" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#00b352",
+              "surface-tint": "#3a5f94",
+              "tertiary-fixed": "#66ff8e",
+              "on-surface-variant": "#43474f",
+              "surface-container": "#edeeef",
+              "on-secondary-container": "#fffbff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-fixed": "#002109",
+              "error": "#ba1a1a",
+              "on-primary-fixed-variant": "#1f477b",
+              "inverse-surface": "#2e3132",
+              "outline-variant": "#c3c6d1",
+              "tertiary": "#00240b",
+              "primary": "#001e40",
+              "surface-dim": "#d9dadb",
+              "outline": "#737780",
+              "tertiary-container": "#003c17",
+              "secondary": "#b7102a",
+              "secondary-fixed-dim": "#ffb3b1",
+              "on-background": "#191c1d",
+              "on-secondary-fixed": "#410007",
+              "background": "#f8f9fa",
+              "surface-variant": "#e1e3e4",
+              "on-primary-container": "#799dd6",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#e7e8e9",
+              "secondary-fixed": "#ffdad8",
+              "surface": "#f8f9fa",
+              "on-primary-fixed": "#001b3c",
+              "surface-container-low": "#f3f4f5",
+              "on-secondary": "#ffffff",
+              "on-surface": "#191c1d",
+              "primary-fixed-dim": "#a7c8ff",
+              "on-secondary-fixed-variant": "#92001c",
+              "error-container": "#ffdad6",
+              "surface-bright": "#f8f9fa",
+              "on-error-container": "#93000a",
+              "secondary-container": "#db313f",
+              "primary-container": "#003366",
+              "inverse-primary": "#a7c8ff",
+              "on-error": "#ffffff",
+              "primary-fixed": "#d5e3ff",
+              "on-tertiary-fixed-variant": "#005322",
+              "tertiary-fixed-dim": "#3de273",
+              "surface-container-highest": "#e1e3e4",
+              "inverse-on-surface": "#f0f1f2",
+              "whatsapp": "#25D366",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      .tonal-transition { transition: background-color 0.3s ease; }
+      .glass-nav { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+      @keyframes wa-ping { 0%{transform:scale(1);opacity:.25} 100%{transform:scale(2.2);opacity:0} }
+      @keyframes badge-in { from{opacity:0;transform:scale(.85) translateY(8px)} to{opacity:1;transform:scale(1) translateY(0)} }
+      .animate-wa-ping { animation: wa-ping 2s ease-out infinite; }
+      .animate-badge-in { animation: badge-in 0.5s cubic-bezier(.22,1,.36,1) .9s both; }
+      html { scroll-behavior: smooth; }
+      ::-webkit-scrollbar { width: 5px; }
+      ::-webkit-scrollbar-track { background: #f3f4f5; }
+      ::-webkit-scrollbar-thumb { background: #003366; border-radius: 3px; }
+    </style>
+    <title>Crédito Forte | Soluções Financeiras</title>
+  </head>
+  <body class="bg-surface font-body text-on-surface">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
