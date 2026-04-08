@@ -20,6 +20,7 @@ export const COMPANY = {
   logoSmall: '/logo.png',
   logoBig: '/logo.png',
   logoHorizontal: '/logo-horizontal.png',
+  logoFooter: '/logo-footer.png',
   heroImage: '/hero-mulher.png',
 }
 

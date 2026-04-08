@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="flex flex-col items-center text-center">
             <div className="w-full max-w-[340px] flex items-center justify-center mb-5 p-4 rounded-xl bg-white shadow-sm">
               <img
-                src={COMPANY.logoHorizontal}
+                src={COMPANY.logoFooter}
                 alt={COMPANY.name}
                 className="w-full h-auto object-contain"
                 style={{ filter: 'contrast(1.15) saturate(1.1)' }}
