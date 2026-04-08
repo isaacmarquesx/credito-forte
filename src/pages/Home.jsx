@@ -1,10 +1,53 @@
 import { COMPANY } from '../utils/constants'
 import { WhatsAppIcon } from '../components/SocialIcons'
+import { useRef, useState, useEffect } from 'react'
 
 /* ─── Hero ─────────────────────────────────────────────── */
 function Hero() {
+  const imageRef = useRef(null)
+  const rafRef = useRef(null)
+  const [tilt, setTilt] = useState({ x: 0, y: 0 })
+  const [scrollY, setScrollY] = useState(0)
+  const isMobile = useRef(typeof window !== 'undefined' && window.innerWidth < 1024)
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      rafRef.current = requestAnimationFrame(() => setScrollY(window.scrollY))
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    }
+  }, [])
+
+  const handleMouseMove = (e) => {
+    if (isMobile.current || !imageRef.current) return
+    const rect = imageRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2)
+    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2)
+    setTilt({ x, y })
+  }
+
+  const handleMouseLeave = () => setTilt({ x: 0, y: 0 })
+
+  const cardStyle = {
+    transform: `
+      perspective(900px)
+      rotateY(${tilt.x * 5}deg)
+      rotateX(${-tilt.y * 3}deg)
+      translateY(${-scrollY * 0.06}px)
+      scale(1.02)
+    `,
+    transition: tilt.x === 0 && tilt.y === 0
+      ? 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+      : 'transform 0.1s linear',
+    willChange: 'transform',
+  }
+
   return (
-    <header className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden bg-surface">
+    <header className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden isolate bg-surface">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
         {/* Texto */}
         <div>
@@ -19,8 +62,11 @@ function Hero() {
             <a
               href={COMPANY.whatsappUrl}
               target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 bg-secondary text-white px-8 py-4 rounded-xl font-headline font-bold
-                text-center hover:opacity-90 transition-all shadow-lg shadow-secondary/20"
+              className="btn-shimmer inline-flex items-center justify-center gap-3 bg-secondary text-white px-8 py-4 rounded-xl font-headline font-bold
+                text-center transition-all shadow-lg shadow-secondary/30
+                hover:brightness-110 hover:shadow-xl hover:shadow-secondary/40 hover:scale-105
+                active:scale-95 relative overflow-hidden
+                before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/15 before:to-transparent before:pointer-events-none"
             >
               <WhatsAppIcon size={24} className="text-whatsapp" />
               Quero impulsionar meu negócio!
@@ -36,11 +82,20 @@ function Hero() {
         </div>
 
         {/* Imagem */}
-        <div className="relative">
-          <div className="rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 relative">
+        <div
+          ref={imageRef}
+          className="relative rounded-2xl"
+          style={{ perspective: '900px' }}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div
+            className="rounded-2xl overflow-hidden shadow-2xl relative"
+            style={cardStyle}
+          >
             <img
               alt="Empreendedor confiante"
-              className="w-full aspect-[4/3] object-cover scale-110 origin-top"
+              className="w-full aspect-[4/3] object-cover"
               src={COMPANY.heroImage}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent flex items-end p-8 pb-20 md:p-10 md:pb-24">
@@ -49,8 +104,6 @@ function Hero() {
               </h2>
             </div>
           </div>
-
-
         </div>
       </div>
 
@@ -78,9 +131,10 @@ function QuemSomos() {
               <p className="text-lg text-on-surface-variant leading-relaxed mb-6">
                 A Crédito Forte nasceu em 2019 com o firme propósito de apoiar o crescimento de
                 pequenos e médios empreendedores, oferecendo soluções financeiras ágeis, seguras e
-                transparentes. Com sede em Feira de Santana – BA, consolidamo-nos como uma Empresa
-                Simples de Crédito (ESC), atuando rigorosamente dentro do marco legal estabelecido
-                pela Lei Complementar nº 167/2019.
+                transparentes. Com sede em Feira de Santana – BA, atendendo regiões limítrofes como
+                Coração de Maria, São Gonçalo dos Campos, Irará, Santa Bárbara, Anguera. Nos
+                consolidamos como uma Empresa Simples de Crédito (ESC), atuando rigorosamente dentro
+                do marco legal estabelecido pela Lei Complementar nº 167/2019.
               </p>
               <p className="text-lg text-on-surface-variant leading-relaxed">
                 Nossa trajetória é pautada pela ética e pelo compromisso com o desenvolvimento
@@ -105,7 +159,7 @@ function MissaoVisaoValores() {
             <div>
               <span className="material-symbols-outlined text-5xl mb-6 text-on-primary-container">flag</span>
               <h3 className="font-headline text-2xl font-bold mb-4">Missão</h3>
-              <p className="text-on-primary-container text-lg opacity-90">
+              <p className="text-white text-lg opacity-90">
                 Apoiar os micro e pequenos empreendedores, para que tenham oportunidade de
                 adquirir capital de giro para expandir o seu negócio, sem distinção de segmento.
               </p>
@@ -167,7 +221,7 @@ function Educacao() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="text-secondary font-body font-bold uppercase tracking-widest mb-4 block text-sm">
-            Educação Financeira
+            Informativo
           </span>
           <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary">
             Soluções financeiras sob medida para quem faz o Brasil crescer.
@@ -192,7 +246,7 @@ function Educacao() {
               O Microempreendedor Individual é a pessoa que trabalha por conta própria e se
               legaliza como pequeno empresário. Na Crédito Forte, entendemos os desafios do MEI
               e oferecemos o suporte necessário para que seu pequeno negócio possa dar o próximo
-              passo com segurança.
+              passo com segurança, te disponibilizando consultoria comercial e financeira de forma gratuita.
             </p>
           </div>
 
@@ -224,9 +278,7 @@ function Educacao() {
             Dinheiro rápido, processo simples, parceiro de verdade.
           </p>
           <p className="text-white opacity-90 max-w-3xl mx-auto">
-            Operamos de acordo com a Lei Complementar 167/2019, utilizando capital próprio para
-            oferecer crédito a empresários locais sem a intermediação de depósitos de terceiros,
-            garantindo total legalidade e transparência em cada contrato assinado.
+            Operamos de acordo com a Lei Complementar 167/2019, utilizando capital próprio para oferecer crédito a empresários locais, garantindo total legalidade e transparência em cada contrato assinado.
           </p>
         </div>
       </div>
@@ -240,25 +292,28 @@ function Video() {
     <section className="py-24 bg-surface">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <h2 className="font-headline text-3xl font-bold text-primary mb-12">
-          Como funciona uma ESC na prática
+          Conheça nossa Empresa
         </h2>
         <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black border-4 border-white mb-10">
-          <iframe
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            className="absolute top-0 left-0 w-full h-full"
-            frameBorder="0"
-            src={COMPANY.youtubeEmbed}
-            title="Crédito Forte Institucional"
-            loading="lazy"
-          />
+          <video
+            src={COMPANY.videoLocal}
+            className="absolute top-0 left-0 w-full h-full object-contain bg-black outline-none"
+            playsInline
+            preload="metadata"
+            controls
+          >
+            Seu navegador não suporta vídeo HTML5.
+          </video>
         </div>
         <a
           href={COMPANY.whatsappUrl}
           target="_blank" rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-3 bg-secondary text-white px-10 py-5
-            rounded-xl font-headline font-bold hover:scale-105 transition-transform
-            shadow-lg shadow-secondary/30"
+          className="btn-shimmer inline-flex items-center justify-center gap-3 bg-secondary text-white px-10 py-5
+            rounded-xl font-headline font-bold transition-all
+            shadow-lg shadow-secondary/30
+            hover:brightness-110 hover:shadow-xl hover:shadow-secondary/40 hover:scale-105
+            active:scale-95 relative overflow-hidden
+            before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/15 before:to-transparent before:pointer-events-none"
         >
           <WhatsAppIcon size={24} className="text-whatsapp" />
           Quero impulsionar meu negócio!
@@ -331,6 +386,114 @@ function Transparencia() {
   )
 }
 
+/* ─── Localização (mapa Google) ────────────────────────── */
+function Localizacao() {
+  return (
+    <section className="py-24 bg-surface-container-low" id="localizacao">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="text-center mb-14">
+          <span className="text-secondary font-body font-bold uppercase tracking-widest mb-4 block text-sm">
+            Onde Estamos
+          </span>
+          <h2 className="font-headline text-4xl md:text-5xl font-bold text-primary mb-4">
+            Venha nos visitar
+          </h2>
+          <p className="text-on-surface-variant text-lg max-w-2xl mx-auto">
+            Nossa sede fica no coração de Feira de Santana – BA. Estamos
+            prontos para atender você pessoalmente.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
+
+          {/* Mapa */}
+          <div className="lg:col-span-3 rounded-2xl overflow-hidden shadow-xl
+            border-4 border-white bg-white min-h-[420px]">
+            <iframe
+              src={COMPANY.googleMapsEmbed}
+              title="Localização Crédito Forte"
+              className="w-full h-full min-h-[420px]"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+
+          {/* Informações de endereço */}
+          <div className="lg:col-span-2 flex flex-col gap-4">
+
+            {/* Card endereço */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/10">
+              <div className="flex items-start gap-4 mb-5">
+                <div className="bg-secondary/10 p-3 rounded-xl shrink-0">
+                  <span className="material-symbols-outlined text-3xl text-secondary">location_on</span>
+                </div>
+                <div>
+                  <p className="text-xs font-body text-slate-500 uppercase tracking-widest mb-1">
+                    Endereço
+                  </p>
+                  <p className="font-headline font-bold text-primary text-lg leading-tight">
+                    {COMPANY.endereco}
+                  </p>
+                  <p className="text-on-surface-variant text-sm mt-1">
+                    {COMPANY.enderecoComplemento}
+                  </p>
+                </div>
+              </div>
+
+              {/* Botão Como chegar */}
+              <a
+                href={COMPANY.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2
+                  bg-primary text-on-primary px-6 py-4 rounded-xl font-headline font-bold
+                  text-sm hover:opacity-90 transition-all active:scale-95"
+              >
+                <span className="material-symbols-outlined text-xl">directions</span>
+                Como chegar
+              </a>
+            </div>
+
+            {/* Card contato rápido */}
+            <div className="bg-primary p-8 rounded-2xl text-white flex-1">
+              <p className="text-xs font-body text-on-primary-container uppercase tracking-widest mb-3">
+                Prefere ligar ou mandar mensagem?
+              </p>
+              <div className="space-y-3">
+                <a
+                  href={`tel:+55${COMPANY.phone.replace(/\D/g, '')}`}
+                  className="flex items-center gap-3 text-white hover:text-on-primary-container transition-colors"
+                >
+                  <span className="material-symbols-outlined text-xl">call</span>
+                  <span className="font-headline font-bold">{COMPANY.phone}</span>
+                </a>
+                <a
+                  href={COMPANY.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-white hover:text-on-primary-container transition-colors"
+                >
+                  <WhatsAppIcon size={20} className="text-whatsapp" />
+                  <span className="font-headline font-bold">Fale no WhatsApp</span>
+                </a>
+                <a
+                  href={`mailto:${COMPANY.email}`}
+                  className="flex items-center gap-3 text-white hover:text-on-primary-container transition-colors break-all"
+                >
+                  <span className="material-symbols-outlined text-xl">mail</span>
+                  <span className="font-headline font-bold text-sm">{COMPANY.email}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 /* ─── Página Home (composição) ─────────────────────────── */
 export default function Home() {
   return (
@@ -341,6 +504,7 @@ export default function Home() {
       <Educacao />
       <Video />
       <Transparencia />
+      <Localizacao />
     </>
   )
 }

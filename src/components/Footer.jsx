@@ -25,16 +25,14 @@ export default function Footer() {
 
           {/* Marca */}
           <div className="flex flex-col items-center text-center">
-            <div className="w-28 h-28 flex items-center justify-center mb-4">
+            <div className="w-full max-w-[340px] flex items-center justify-center mb-5 p-4 rounded-xl bg-white shadow-sm">
               <img
-                src={COMPANY.logoSmall}
+                src={COMPANY.logoHorizontal}
                 alt={COMPANY.name}
-                className="max-w-full max-h-full object-contain"
+                className="w-full h-auto object-contain"
+                style={{ filter: 'contrast(1.15) saturate(1.1)' }}
               />
             </div>
-            <p className="text-on-surface-variant text-sm leading-relaxed mb-4 max-w-[18rem]">
-              Soluções financeiras de alto impacto para quem impulsiona a economia real.
-            </p>
             <div className="flex items-center justify-center gap-6">
               <a href={COMPANY.instagramUrl} target="_blank" rel="noopener noreferrer"
                 className="text-primary hover:text-[#E1306C] transition-colors" aria-label="Instagram">
@@ -69,7 +67,7 @@ export default function Footer() {
           {/* Contato legal */}
           <div className="flex flex-col gap-3 pt-2">
             <span className="font-headline font-bold text-xs uppercase tracking-widest text-primary mb-2">
-              Contato Legal
+              Contato
             </span>
             <p className="text-on-surface-variant text-sm">{COMPANY.email}</p>
             <p className="text-on-surface-variant text-sm">{COMPANY.phone}</p>
@@ -78,7 +76,7 @@ export default function Footer() {
               CNPJ {COMPANY.cnpj}<br />
               {COMPANY.localizacao}
             </p>
-            <p className="text-outline text-xs mt-1">LC nº 167/2019 — Empresa Simples de Crédito</p>
+            <p className="text-outline text-xs mt-1"><a href="https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp167.htm" target="_blank" rel="noopener noreferrer" className="hover:underline">LC nº 167/2019 — Empresa Simples de Crédito</a></p>
           </div>
         </div>
       </div>

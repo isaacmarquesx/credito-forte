@@ -5,22 +5,30 @@ export const COMPANY = {
   situacao: 'Ativa',
   abertura: '19/06/2019',
   localizacao: 'Feira de Santana – BA',
+  endereco: 'Rua Cel. José Pinto dos Santos, 653',
+  enderecoComplemento: 'Feira de Santana, BA — CEP 44051-400',
+  enderecoCompleto: 'Crédito Forte, Rua Cel. José Pinto dos Santos 653, Feira de Santana, BA, 44051-400',
+  googleMapsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Cr%C3%A9dito+Forte%2C+Rua+Cel.+Jos%C3%A9+Pinto+dos+Santos%2C+653%2C+Feira+de+Santana%2C+BA%2C+44051-400',
+  googleMapsEmbed: 'https://www.google.com/maps?q=Cr%C3%A9dito+Forte%2C+Rua+Cel.+Jos%C3%A9+Pinto+dos+Santos%2C+653%2C+Feira+de+Santana%2C+BA%2C+44051-400&output=embed',
   phone: '75 99145-1005',
   email: 'comercial@creditoforte.com.br',
   whatsappUrl: 'https://wa.me/5575991451005',
   instagramUrl: 'https://www.instagram.com/creditoforte/',
   facebookUrl: 'https://www.facebook.com/creditofortefsa/',
   youtubeEmbed: 'https://www.youtube.com/embed/xli8Bp3JW-g',
+  videoLocal: '/video-esc.mp4',
   logoSmall: '/logo.png',
   logoBig: '/logo.png',
-  heroImage: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAVyuldeymSm_qfb_iSAQASA2fiYYFztu7psJjtMJ7gwByaV-OAv7ubnFUen9Cat0wL18siCksTU0e1cCsIbkw5YFQX6O2e0dq6KdaMEdhpW1KlTn3ZrwRCV-WuI4cJbzSjGMGr0wdiQEcRn86XsOfN2pOHWmkLphg6wfOo1DqzV-LDXzJ1_03UrSx22TFtfLbUhwZ2H-PAPDL9gbAKBOlmO-8LOZelhNRo1vstxjIIrUz87usm10NZG1VmQY48WPGkyf5wbW_BKaU',
+  logoHorizontal: '/logo-horizontal.png',
+  heroImage: '/hero-mulher.png',
 }
 
 export const NAV_LINKS = [
   { label: 'Início',        href: '#' },
   { label: 'Sobre Nós',     href: '#sobre' },
-  { label: 'Educação',      href: '#educacao' },
+  { label: 'Informativo',   href: '#educacao' },
   { label: 'Transparência', href: '#transparencia' },
+  { label: 'Localização',   href: '#localizacao' },
 ]
 
 export const MISSAO =

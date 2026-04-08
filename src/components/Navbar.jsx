@@ -62,7 +62,7 @@ export default function Navbar() {
 
         {/* Logo */}
         <a href="#" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
-          <img src={COMPANY.logoSmall} alt={COMPANY.name} className="h-12 w-auto object-contain" />
+          <img src={COMPANY.logoSmall} alt={COMPANY.name} className="h-24 w-auto object-contain" />
         </a>
 
         {/* Links desktop */}
