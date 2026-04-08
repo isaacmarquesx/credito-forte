@@ -129,16 +129,11 @@ function QuemSomos() {
           <div className="lg:col-span-7">
             <div className="bg-surface-container-lowest p-8 md:p-12 rounded-xl shadow-sm border border-outline-variant/10">
               <p className="text-lg text-on-surface-variant leading-relaxed mb-6">
-                A Crédito Forte nasceu em 2019 com o firme propósito de apoiar o crescimento de
-                pequenos e médios empreendedores, oferecendo soluções financeiras ágeis, seguras e
-                transparentes. Com sede em Feira de Santana – BA, atendendo regiões limítrofes como
-                Coração de Maria, São Gonçalo dos Campos, Irará, Santa Bárbara, Anguera. Nos
-                consolidamos como uma Empresa Simples de Crédito (ESC), atuando rigorosamente dentro
-                do marco legal estabelecido pela Lei Complementar nº 167/2019.
+                A Crédito Forte nasceu em 2019 com o firme propósito de apoiar o crescimento de pequenos e médios empreendedores, oferecendo soluções financeiras ágeis, seguras e transparentes. Com sede em Feira de Santana – BA, atendendo regiões limítrofes como Coração de Maria, São Gonçalo dos Campos, Irará, Santa Bárbara, Anguera e outros. Nos consolidamos como uma Empresa Simples de Crédito (ESC), atuando rigorosamente dentro do marco legal estabelecido pela Lei Complementar nº 167/2019.
+
               </p>
               <p className="text-lg text-on-surface-variant leading-relaxed">
-                Nossa trajetória é pautada pela ética e pelo compromisso com o desenvolvimento
-                regional, transformando capital em oportunidades para quem movimenta a economia.
+                Nossa trajetória é pautada pela ética e pelo compromisso com o desenvolvimento regional, transformando capital em oportunidades para quem movimenta a economia.
               </p>
             </div>
           </div>
