@@ -68,7 +68,7 @@ function Hero() {
                 active:scale-95 relative overflow-hidden
                 before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/15 before:to-transparent before:pointer-events-none"
             >
-              <WhatsAppIcon size={24} className="text-whatsapp" />
+              <WhatsAppIcon size={24} className="text-white" />
               Quero impulsionar meu negócio!
             </a>
             <a
@@ -315,7 +315,7 @@ function Video() {
             active:scale-95 relative overflow-hidden
             before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/15 before:to-transparent before:pointer-events-none"
         >
-          <WhatsAppIcon size={24} className="text-whatsapp" />
+          <WhatsAppIcon size={24} className="text-white" />
           Quero impulsionar meu negócio!
         </a>
       </div>
@@ -475,7 +475,7 @@ function Localizacao() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-white hover:text-on-primary-container transition-colors"
                 >
-                  <WhatsAppIcon size={20} className="text-whatsapp" />
+                  <WhatsAppIcon size={20} className="text-white" />
                   <span className="font-headline font-bold">Fale no WhatsApp</span>
                 </a>
                 <a
